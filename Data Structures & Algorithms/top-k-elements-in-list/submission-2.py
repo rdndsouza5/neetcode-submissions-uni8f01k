@@ -1,0 +1,14 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        hashMap ={}
+        freq =[[] for i in range(len(nums)+1)]
+        for i in nums:
+            hashMap[i]=1+ hashMap.get(i,0)
+        for key, value in hashMap.items():
+            freq[value].append(key)
+        res=[]
+        for i in range(len(freq)-1,0,-1):
+            for n in freq[i]:
+                res.append(n)
+            if len(res)==k:
+                return res
